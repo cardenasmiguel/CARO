@@ -1,0 +1,22 @@
+# Rotación de logs de caro5m (install.sh --logrotate sustituye @DIR@ y lo copia a /etc/logrotate.d/caro5m)
+# copytruncate: el bot/PTB siguen escribiendo en el mismo descriptor (systemd los abre con append).
+@DIR@/data/caro5m.log @DIR@/data/ptb.log {
+    daily
+    rotate 14
+    compress
+    delaycompress
+    missingok
+    notifempty
+    copytruncate
+}
+
+# PTB guarda ndjson de auditoría (uno al día por tipo)
+@DIR@/data/ptb/*.ndjson {
+    daily
+    rotate 7
+    compress
+    delaycompress
+    missingok
+    notifempty
+    copytruncate
+}

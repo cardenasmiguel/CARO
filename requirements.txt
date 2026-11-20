@@ -1,0 +1,9 @@
+# Dependencias directas de caro5m (verificadas con Python 3.12 y 3.13, nov-2026).
+py_clob_client_v2==1.1.0
+httpx[http2,socks]==0.28.1
+requests[socks]==2.31.0
+aiohttp==3.14.3
+websockets==16.0
+textual==8.2.8
+tzdata
+psutil>=5.9; sys_platform == "win32"   # Windows: comprobar/parar procesos del bot y del PTB

@@ -1,0 +1,23 @@
+[Unit]
+Description=caro5m - PTB temprano (solo lectura, sin claves)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=@USER@
+WorkingDirectory=@DIR@
+Environment=CARO5M_HOME=@DIR@
+ExecStart=@PY@ -m caro5m.ptb
+StandardOutput=append:@DIR@/data/ptb.log
+StandardError=append:@DIR@/data/ptb.log
+Restart=on-failure
+RestartSec=10
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=@DIR@/data /dev/shm
+
+[Install]
+WantedBy=multi-user.target

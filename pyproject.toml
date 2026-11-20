@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "caro5m"
+version = "1.2.6"
+description = "Bot de mercados Up/Down de 5 minutos (BTC, ETH, XRP, SOL, DOGE, BNB, HYPE, ZEC) de Polymarket con panel de control en terminal (TUI)"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+  { name = "Miguel Cardenas", email = "cardenasma@gmail.com" },
+]
+requires-python = ">=3.10"
+dependencies = [
+  "py_clob_client_v2==1.1.0",
+  "httpx[http2,socks]>=0.28,<0.29",
+  "requests[socks]>=2.31",
+  "aiohttp>=3.9",
+  "websockets>=15",
+  "textual>=8.2,<9",
+  "tzdata",
+  "psutil>=5.9; sys_platform == 'win32'",
+]
+
+[project.urls]
+Homepage = "https://github.com/cardenasmiguel/CARO"
+Issues = "https://github.com/cardenasmiguel/CARO/issues"
+"Bug Reports" = "https://github.com/cardenasmiguel/CARO/issues"
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+caro5m = "caro5m.tui.app:main"
+caro5m-bot = "caro5m.bot:run"
+caro5m-ptb = "caro5m.ptb:run"
+
+[tool.setuptools]
+packages = ["caro5m", "caro5m.tui"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning"]

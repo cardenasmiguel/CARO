@@ -1,0 +1,30 @@
+# secretos y configuración local
+.env
+.env.*
+!.env.example
+config/settings.env
+accounts/
+
+# datos de ejecución
+data/
+logs/
+*.log
+*.ndjson
+state*.json
+status.json
+out/
+
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# editor / sistema
+.DS_Store
+.idea/
+.vscode/

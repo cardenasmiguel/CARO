@@ -1,0 +1,25 @@
+[Unit]
+Description=caro5m - bot Polymarket Up/Down 5m (por defecto en modo PRUEBA)
+After=network-online.target caro5m-ptb.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=@USER@
+WorkingDirectory=@DIR@
+Environment=CARO5M_HOME=@DIR@
+# Los secretos NO se pasan por systemd: el bot lee @DIR@/.env (0600) él mismo.
+ExecStart=@PY@ -m caro5m.bot
+StandardOutput=append:@DIR@/data/caro5m.log
+StandardError=append:@DIR@/data/caro5m.log
+Restart=on-failure
+RestartSec=10
+# Endurecimiento básico
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=@DIR@/data /dev/shm
+
+[Install]
+WantedBy=multi-user.target
